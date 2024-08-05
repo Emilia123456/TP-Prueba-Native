@@ -1,13 +1,12 @@
-// screens/HomeScreen.js
 import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { Button, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
-export default function HomeScreen() {
+export default function Login() {
   const navigation = useNavigation();
-  const [nombre, handleNombreChange] = useState('');
-  const [numero, handleNumeroChange] = useState('');
+  const [nombre, setNombre] = useState('');
+  const [numero, setNumero] = useState('');
 
   const handlePress = () => {
     console.log('Button pressed');
@@ -22,22 +21,22 @@ export default function HomeScreen() {
         <TextInput
           style={styles.input}
           placeholder="Ingrese su nombre"
-          onChangeText={handleNombreChange}
+          onChangeText={setNombre}
           value={nombre}
         />
         <Text style={styles.label}>Teléfono</Text>
         <TextInput
           style={styles.input}
           placeholder="Ingrese su teléfono"
-          onChangeText={handleNumeroChange}
+          onChangeText={setNumero}
           value={numero}
         />
         <TouchableOpacity onPress={handlePress}>
-          <Text style={styles.label}>Olvidé la contra jaja re bobi</Text>
+          <Text style={styles.forgotPassword}>Olvidé la contraseña</Text>
         </TouchableOpacity>
         <Button
           title="Siguiente"
-          onPress={() => navigation.navigate('Data', { nombre, numero })}
+          onPress={() => navigation.navigate('Home', { nombre, numero })}
         />
       </View>
     </SafeAreaView>
@@ -71,5 +70,11 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     paddingHorizontal: 8,
     marginBottom: 16,
+  },
+  forgotPassword: {
+    fontSize: 16,
+    color: 'blue',
+    marginBottom: 16,
+    textAlign: 'center',
   },
 });
