@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { Button, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Button, SafeAreaView, StyleSheet, Text, TextInput, TouchableOpacity, View, Linking } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 
 export default function Login() {
@@ -8,8 +8,8 @@ export default function Login() {
   const [nombre, setNombre] = useState('');
   const [numero, setNumero] = useState('');
 
-  const handlePress = () => {
-    console.log('Button pressed');
+  const handleForgotPasswordPress = () => {
+    Linking.openURL('https://www.youtube.com/watch?v=dQw4w9WgXcQ');
   };
 
   return (
@@ -31,12 +31,12 @@ export default function Login() {
           onChangeText={setNumero}
           value={numero}
         />
-        <TouchableOpacity onPress={handlePress}>
+        <TouchableOpacity onPress={handleForgotPasswordPress}>
           <Text style={styles.forgotPassword}>Olvidé la contraseña</Text>
         </TouchableOpacity>
         <Button
           title="Siguiente"
-          onPress={() => navigation.navigate('HomeTabs', { nombre, numero })}
+          onPress={() => navigation.navigate('Tabs', { screen: 'Home', params: { nombre, numero } })}
         />
       </View>
     </SafeAreaView>

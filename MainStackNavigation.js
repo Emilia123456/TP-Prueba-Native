@@ -1,24 +1,24 @@
-import * as React from 'react';
+import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import Login from './Login';
 import MyTabs from './BottomTabNavigator';
 
-const MainStack = createStackNavigator();
+const Stack = createStackNavigator();
 
 function MainStackNavigator() {
   return (
-    <MainStack.Navigator initialRouteName="Login">
-      <MainStack.Screen 
+    <Stack.Navigator>
+      <Stack.Screen 
         name="Login" 
         component={Login} 
-        options={{ headerShown: false }} // Ocultar encabezado
+        options={{ headerShown: false }}
       />
-      <MainStack.Screen 
-        name="HomeTabs" 
+      <Stack.Screen 
+        name="Tabs" 
         component={MyTabs} 
-        options={{ headerShown: false }} // Ocultar encabezado para las pestañas
+        options={{ headerShown: false }}
       />
-    </MainStack.Navigator>
+    </Stack.Navigator>
   );
 }
 
