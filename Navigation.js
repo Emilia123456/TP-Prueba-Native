@@ -2,7 +2,7 @@ import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import Login from './Login';
 import Home from './Home';
-import Screen1 from './Screen1';
+import Buscar from './Buscar';
 import Screen2 from './Screen2';
 
 const StackA = createStackNavigator();
@@ -17,13 +17,18 @@ function StackANavigator() {
   );
 }
 
+
+
 function StackBNavigator() {
   return (
     <StackB.Navigator>
-      <StackB.Screen name="Screen1" component={Screen1} />
+      <StackB.Screen name="Buscar" component={Buscar} />
       <StackB.Screen name="Screen2" component={Screen2} />
     </StackB.Navigator>
   );
 }
+
+export default StackBNavigator;
+
 
 export { StackANavigator, StackBNavigator };

@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Home from './Home';
-import Screen1 from './Screen1';
-import Screen2 from './Screen2';
+import StackBNavigator from './Navigation'; // Importar el Stack B
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const Tab = createBottomTabNavigator();
@@ -20,20 +19,11 @@ function MyTabs() {
         }}
       />
       <Tab.Screen 
-        name="Screen1" 
-        component={Screen1} 
+        name="Buscar" 
+        component={StackBNavigator} // Utilizar el Stack B
         options={{
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="search" color={color} size={size} />
-          ),
-        }}
-      />
-      <Tab.Screen 
-        name="Screen2" 
-        component={Screen2} 
-        options={{
-          tabBarIcon: ({ color, size }) => (
-            <Ionicons name="settings" color={color} size={size} />
           ),
         }}
       />
