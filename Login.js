@@ -36,7 +36,7 @@ export default function Login() {
         </TouchableOpacity>
         <Button
           title="Siguiente"
-          onPress={() => navigation.navigate('Home', { nombre, numero })}
+          onPress={() => navigation.navigate('HomeTabs', { nombre, numero })}
         />
       </View>
     </SafeAreaView>

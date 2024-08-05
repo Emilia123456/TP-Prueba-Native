@@ -1,4 +1,4 @@
-import React from 'react';
+import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 import Login from './Login';
 import Home from './Home';
@@ -10,7 +10,7 @@ const StackB = createStackNavigator();
 
 function StackANavigator() {
   return (
-    <StackA.Navigator initialRouteName="Login">
+    <StackA.Navigator initialRouteName="Home">
       <StackA.Screen name="Login" component={Login} />
       <StackA.Screen name="Home" component={Home} />
     </StackA.Navigator>

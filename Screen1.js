@@ -8,8 +8,8 @@ export default function Screen1({ route, navigation }) {
     <View style={styles.container}>
       <Text style={styles.text}>Esta es la screen 1</Text>
       <Button
-        title="Go back"
-        onPress={() => navigation.goBack()}
+        title="Ir a la screen 2"
+        onPress={() =>  navigation.navigate('Screen2')}
       />
     </View>
   );
