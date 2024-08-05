@@ -30,6 +30,7 @@ export default function Login() {
           placeholder="Ingrese su teléfono"
           onChangeText={setNumero}
           value={numero}
+          keyboardType='phone-pad'
         />
         <TouchableOpacity onPress={handleForgotPasswordPress}>
           <Text style={styles.forgotPassword}>Olvidé la contraseña</Text>
