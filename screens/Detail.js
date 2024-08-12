@@ -1,17 +1,16 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image } from 'react-native';
 
-import EventoImage from '../assets/bertram.jpg'
 
 const Detail = ({ route }) => {
     const { evento } = route.params;
   
     return (
       <View style={styles.container}>
-        <Image source={EventoImage} style={styles.imagen} />
-        <Text style={styles.name}>{evento.name}</Text>
-        <Text style={styles.description}>{evento.description}</Text>
-        <Text style={styles.start_date}>{evento.start_date}</Text>
+        <Image source={{uri: evento.Poster}} style={styles.imagen} />
+        <Text style={styles.name}>{evento.Title}</Text>
+        <Text style={styles.description}>{evento.Type}</Text>
+        <Text style={styles.start_date}>{evento.Year}</Text>
       </View>
     );
   };

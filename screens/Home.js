@@ -1,49 +1,56 @@
 import React, { useEffect, useState } from 'react';
-import { SafeAreaView, FlatList, Text, View, StyleSheet, Image, TouchableOpacity } from 'react-native';
-import EventosService from '../service/eventoService';
-import EventoImage from '../assets/bertram.jpg'
+import { SafeAreaView, FlatList, Text, View, StyleSheet, Image, TouchableOpacity, Button, TextInput, Alert } from 'react-native';
+import { searchMovies } from '../service/api.js';  // Importa la función searchMovies desde api.js
 
-const EventoItem = ({ evento, onPress, navigation }) => (
+const EventoItem = ({ evento, onPress }) => (
   <TouchableOpacity style={styles.itemContainer} onPress={onPress}>
-    <Image source={EventoImage} style={styles.imagen} />
+    <Image source={{ uri: evento.Poster }} style={styles.imagen} />
     <View style={styles.textContainer}>
-      <Text style={styles.name}>{evento.name}</Text>
-      <Text style={styles.description}>{evento.description}</Text>
-      <Text style={styles.start_date}>{evento.start_date}</Text>
+      <Text style={styles.name}>{evento.Title}</Text>
+      <Text style={styles.description}>{evento.Type}</Text>
+      <Text style={styles.start_date}>{evento.Year}</Text>
     </View>
   </TouchableOpacity>
 );
 
-
 const Home = ({ navigation }) => {
-  const [eventos, setEventos] = useState([]);
+  const [search, setSearch] = useState(''); 
+  const [movies, setMovies] = useState([]);
 
-  useEffect(() => {
-    // Obtengo el Array de Eventos.
-    const fetchedEventos = EventosService.getAll();
-    setEventos(fetchedEventos);
-  }, []);
+  const fetchMovies = async () => {
+    try {
+      const response = await searchMovies(search);
+      if (response.Search) {
+        setMovies(response.Search);  // Setea las películas que coinciden con la búsqueda
+      } else {
+        Alert.alert('No se encontraron resultados');
+        setMovies([]);
+      }
+    } catch (error) {
+      console.error('Error fetching data:', error);
+      Alert.alert('Error al buscar películas');
+    }
+  };
 
   return (
     <SafeAreaView style={styles.container}>
-    <FlatList
-      data={eventos}
-      renderItem={({ item }) => (
-        <TouchableOpacity
-          style={styles.itemContainer}
-          onPress={() => navigation.navigate('Detail', { evento: item })}
-        >
-          <Image source={EventoImage} style={styles.imagen} />
-          <View style={styles.textContainer}>
-            <Text style={styles.name}>{item.name}</Text>
-            <Text style={styles.description}>{item.description}</Text>
-            <Text style={styles.start_date}>{item.start_date}</Text>
-          </View>
-        </TouchableOpacity>
-      )}
-  keyExtractor={item => item.id}
-/>
-
+      <TextInput
+        value={search}
+        placeholder="Buscar"
+        onChangeText={text => setSearch(text)}
+        style={styles.input}
+      />
+      <Button title="Buscar" onPress={fetchMovies} />
+      <FlatList 
+          data={movies}
+          renderItem={({ item }) => (
+            <EventoItem
+              evento={item}
+              onPress={() => navigation.navigate('Detail', { evento: item })}
+            />
+          )}
+          keyExtractor={item => (item.imdbID ? item.imdbID.toString() : Math.random().toString())}
+      />
     </SafeAreaView>
   );
 };
@@ -94,6 +101,13 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: '#999',
     marginTop: 2,
+  },
+  input: {
+    marginBottom: 10,
+    padding: 10,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 5,
   },
 });
 

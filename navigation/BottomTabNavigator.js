@@ -26,7 +26,10 @@ function MyTabs() {
             <Ionicons name="search" color={color} size={size} />
           ),
         }}
+        
       />
+
+      
     </Tab.Navigator>
   );
 }
