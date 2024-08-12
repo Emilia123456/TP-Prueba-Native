@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Home from './Home';
-import StackBNavigator from './Navigation'; // Importar el Stack B
+import Home from '../screens/Home';
+import StackBNavigator from '../navigation/Navigation'; // Importar el Stack B
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 const Tab = createBottomTabNavigator();

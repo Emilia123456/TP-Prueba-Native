@@ -1,9 +1,10 @@
 import * as React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import Login from './Login';
-import Home from './Home';
-import Buscar from './Buscar';
-import Screen2 from './Screen2';
+import Login from '../screens/Login';
+import Home from '../screens/Home';
+import Buscar from '../screens/Buscar';
+import Detail from '../screens/Detail'
+import Screen2 from '../screens/Screen2';
 
 const StackA = createStackNavigator();
 const StackB = createStackNavigator();
@@ -13,6 +14,7 @@ function StackANavigator() {
     <StackA.Navigator initialRouteName="Home">
       <StackA.Screen name="Login" component={Login} options={{ headerShown: false }} />
       <StackA.Screen name="Home" component={Home} options={{ headerShown: false }} />
+      <StackA.Screen name="Detail" component={Detail} options={{ headerShown: false }} />
     </StackA.Navigator>
   );
 }
