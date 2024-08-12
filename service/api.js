@@ -11,8 +11,8 @@ export const searchMovies = async (inputValue) => {
   try {
     const response = await api.get('/', {
       params: {
-        apikey: '6e153896',  // Asegúrate de que esta clave sea correcta
-        s: inputValue,       // Parámetro de búsqueda
+        apikey: '6e153896',  //mi api key :)
+        s: inputValue,      
       },
     });
     return response.data;

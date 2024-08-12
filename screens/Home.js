@@ -21,7 +21,7 @@ const Home = ({ navigation }) => {
     try {
       const response = await searchMovies(search);
       if (response.Search) {
-        setMovies(response.Search);  // Setea las películas que coinciden con la búsqueda
+        setMovies(response.Search);  
       } else {
         Alert.alert('No se encontraron resultados');
         setMovies([]);
